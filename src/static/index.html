@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia de Estudos - ENEM</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h2>Guia de Estudos</h2>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="#" class="nav-link active" data-section="dashboard"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+                    <li><a href="#" class="nav-link" data-section="tarefas"><i class="fas fa-tasks"></i> Tarefas</a></li>
+                    <li><a href="#" class="nav-link" data-section="pomodoro"><i class="fas fa-clock"></i> Pomodoro</a></li>
+                    <li><a href="#" class="nav-link" data-section="categorias"><i class="fas fa-folder"></i> Categorias</a></li>
+                    <li><a href="#" class="nav-link" data-section="prioridades"><i class="fas fa-flag"></i> Prioridades</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="content-section active">
+                <div class="section-header">
+                    <h1>Dashboard</h1>
+                    <p>Acompanhe seu progresso nos estudos</p>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="total-tarefas">0</h3>
+                            <p>Total de Tarefas</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="tarefas-concluidas">0</h3>
+                            <p>Tarefas Concluídas</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="tarefas-pendentes">0</h3>
+                            <p>Tarefas Pendentes</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="percentual-conclusao">0%</h3>
+                            <p>Taxa de Conclusão</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-content">
+                    <div class="progress-section">
+                        <h3>Progresso por Categoria</h3>
+                        <div id="categorias-progress" class="progress-list">
+                            <!-- Progresso das categorias será inserido aqui -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tarefas Section -->
+            <section id="tarefas" class="content-section">
+                <div class="section-header">
+                    <h1>Gerenciar Tarefas</h1>
+                    <button class="btn btn-primary" id="nova-tarefa-btn">
+                        <i class="fas fa-plus"></i> Nova Tarefa
+                    </button>
+                </div>
+                
+                <div class="filters">
+                    <select id="filtro-categoria">
+                        <option value="">Todas as Categorias</option>
+                    </select>
+                    <select id="filtro-prioridade">
+                        <option value="">Todas as Prioridades</option>
+                    </select>
+                    <select id="filtro-status">
+                        <option value="">Todos os Status</option>
+                        <option value="pendente">Pendentes</option>
+                        <option value="concluida">Concluídas</option>
+                    </select>
+                </div>
+                
+                <div class="tarefas-container">
+                    <div id="lista-tarefas" class="tarefas-list">
+                        <!-- Tarefas serão inseridas aqui -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pomodoro Section -->
+            <section id="pomodoro" class="content-section">
+                <div class="section-header">
+                    <h1>Timer Pomodoro</h1>
+                    <p>Técnica de produtividade para seus estudos</p>
+                </div>
+                
+                <div class="pomodoro-container">
+                    <div class="pomodoro-timer">
+                        <div class="timer-circle">
+                            <div class="timer-display">
+                                <span id="timer-minutes">25</span>:<span id="timer-seconds">00</span>
+                            </div>
+                            <div class="timer-label" id="timer-label">Tempo de Estudo</div>
+                        </div>
+                        
+                        <div class="timer-controls">
+                            <button class="btn btn-success" id="start-timer">
+                                <i class="fas fa-play"></i> Iniciar
+                            </button>
+                            <button class="btn btn-warning" id="pause-timer" style="display: none;">
+                                <i class="fas fa-pause"></i> Pausar
+                            </button>
+                            <button class="btn btn-danger" id="reset-timer">
+                                <i class="fas fa-stop"></i> Parar
+                            </button>
+                        </div>
+                        
+                        <div class="cycle-info">
+                            <span>Ciclo <span id="current-cycle">1</span> de <span id="total-cycles">4</span></span>
+                        </div>
+                    </div>
+                    
+                    <div class="pomodoro-config">
+                        <h3>Configurações</h3>
+                        <div class="config-form">
+                            <div class="form-group">
+                                <label for="tempo-estudo">Tempo de Estudo (minutos)</label>
+                                <input type="number" id="tempo-estudo" min="1" max="60" value="25">
+                            </div>
+                            <div class="form-group">
+                                <label for="tempo-descanso">Tempo de Descanso (minutos)</label>
+                                <input type="number" id="tempo-descanso" min="1" max="30" value="5">
+                            </div>
+                            <div class="form-group">
+                                <label for="num-ciclos">Número de Ciclos</label>
+                                <input type="number" id="num-ciclos" min="1" max="10" value="4">
+                            </div>
+                            <button class="btn btn-primary" id="salvar-config">Salvar Configuração</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Categorias Section -->
+            <section id="categorias" class="content-section">
+                <div class="section-header">
+                    <h1>Gerenciar Categorias</h1>
+                    <button class="btn btn-primary" id="nova-categoria-btn">
+                        <i class="fas fa-plus"></i> Nova Categoria
+                    </button>
+                </div>
+                
+                <div class="categorias-container">
+                    <div id="lista-categorias" class="items-list">
+                        <!-- Categorias serão inseridas aqui -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Prioridades Section -->
+            <section id="prioridades" class="content-section">
+                <div class="section-header">
+                    <h1>Gerenciar Prioridades</h1>
+                    <button class="btn btn-primary" id="nova-prioridade-btn">
+                        <i class="fas fa-plus"></i> Nova Prioridade
+                    </button>
+                </div>
+                
+                <div class="prioridades-container">
+                    <div id="lista-prioridades" class="items-list">
+                        <!-- Prioridades serão inseridas aqui -->
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal para Nova Tarefa -->
+    <div id="modal-tarefa" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-tarefa-title">Nova Tarefa</h3>
+                <span class="close" id="close-modal-tarefa">&times;</span>
+            </div>
+            <form id="form-tarefa">
+                <div class="form-group">
+                    <label for="tarefa-titulo">Título *</label>
+                    <input type="text" id="tarefa-titulo" required>
+                </div>
+                <div class="form-group">
+                    <label for="tarefa-descricao">Descrição</label>
+                    <textarea id="tarefa-descricao" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="tarefa-categoria">Categoria</label>
+                    <select id="tarefa-categoria">
+                        <option value="">Selecione uma categoria</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="tarefa-prioridade">Prioridade</label>
+                    <select id="tarefa-prioridade">
+                        <option value="">Selecione uma prioridade</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" id="cancel-tarefa">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para Nova Categoria -->
+    <div id="modal-categoria" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Nova Categoria</h3>
+                <span class="close" id="close-modal-categoria">&times;</span>
+            </div>
+            <form id="form-categoria">
+                <div class="form-group">
+                    <label for="categoria-nome">Nome da Categoria *</label>
+                    <input type="text" id="categoria-nome" required>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" id="cancel-categoria">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para Nova Prioridade -->
+    <div id="modal-prioridade" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Nova Prioridade</h3>
+                <span class="close" id="close-modal-prioridade">&times;</span>
+            </div>
+            <form id="form-prioridade">
+                <div class="form-group">
+                    <label for="prioridade-nome">Nome da Prioridade *</label>
+                    <input type="text" id="prioridade-nome" required>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" id="cancel-prioridade">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
