@@ -1,4 +1,4 @@
-# 📚 Guia de Estudos - ENEM
+# 📚 Guia de Estudos
 
 Um sistema completo de gerenciamento de estudos, desenvolvido em Python com Flask e interface web moderna. O sistema inclui técnica Pomodoro, gerenciamento de tarefas, categorias e prioridades para tornar seus estudos mais organizados e produtivos.
 
